@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego's memory</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="java2.js" defer></script>
+</head>
+<body>
+    <figure>
+        <img src="img/images.jpg" alt="foto">
+    </figure>
+    <div><h1>Welkome You</h1></div>
+    <div class="game">
+        <div class="controls">
+            <button>Start</button>
+            <div class="stats">
+                <div class="moves">0 moves</div>
+                <div class="timer">Time: 0 sec</div>
+            </div>
+        </div>
+        <div class="board-container">
+            <div class="board" data-dimension="4"></div>
+            <div class="win">You won!</div>
+        </div>
+    </div>
+    <button id="restart" onclick="refreshPage()">restart</button>
+</body>
+</html>
+    
