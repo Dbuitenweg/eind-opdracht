@@ -1,20 +1,21 @@
+// hulp gekregen van me vriendin met het structuren van zinnen
 // Definieer selectoren om belangrijke elementen van de pagina op te halen
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
-    board: document.querySelector('.board'),
-    moves: document.querySelector('.moves'),
-    timer: document.querySelector('.timer'),
     start: document.querySelector('button'),
+     restart: document.querySelector('#restart'),
+    moves: document.querySelector('.moves'),
+    board: document.querySelector('.board'),
     win: document.querySelector('.win'),
-    restart: document.querySelector('#restart')
+    timer: document.querySelector('.timer')
 }
 // Functie om het spel te herstarten
 const restartGame = () =>{
     clearInterval(state.loop);
     state.gameStarted = false;
-    state.flippedCards = 0;
+     state.totalTime = 0;
     state.totalFlips = 0;
-    state.totalTime = 0;
+    state.flippedCards = 0;
     selectors.moves.innerText = '0 moves';
     selectors.timer.innerText = 'Time: 0 sec';
     selectors.boardContainer.classList.remove('flipped');
@@ -67,7 +68,7 @@ const generateGame = () => {
         throw new Error("The dimension of the board must be an even number.")
     }
 
-    const emojis = ['🥔', '🍒', '🥑', '🌽', '🥕', '🍇', '🍉', '🍌', '🥭', '🍍']
+    const emojis = ['🍒', '🥑', '🌽', '🥕', '🍇', '🍉', '🥭']
     const picks = pickRandom(emojis, (dimensions * dimensions) / 4) 
     const items = shuffle([...picks, ...picks])
     const cards = `
@@ -93,8 +94,8 @@ const startGame = () => {
     state.loop = setInterval(() => {
         state.totalTime++
 
-        selectors.moves.innerText = `${state.totalFlips} moves`
         selectors.timer.innerText = `Time: ${state.totalTime} sec`
+        selectors.moves.innerText = `${state.totalFlips} moves`
     }, 1000)
 }
 // Functie om omgedraaide kaarten terug te draaien als ze niet overeenkomen
@@ -128,7 +129,7 @@ const flipCard = card => {
 
         setTimeout(() => {
             flipBackCards()
-        }, 1000)
+        }, 750)
     }
     if (!document.querySelectorAll('.card:not(.flipped)').length) {
         setTimeout(() => {
@@ -142,7 +143,7 @@ const flipCard = card => {
             `
 
             clearInterval(state.loop)
-        }, 1000)
+        }, 750)
     }
 }
 // Functie om eventlisteners toe te voegen
